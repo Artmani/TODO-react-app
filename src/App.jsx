@@ -1,5 +1,4 @@
 import { useState } from 'react';
-
 import NewTaskForm from './components/NewTaskForm';
 import TaskList from './components/TaskList';
 import Footer from './components/Footer';
@@ -7,6 +6,7 @@ import './styles/index.css';
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
+  const [filter, setFilter] = useState('all');
 
   const addTask = (description) => {
     const newTask = {
@@ -30,6 +30,12 @@ const App = () => {
     setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
   }
 
+  const filteredTasks = tasks.filter((task) => {
+    if (filter === 'active') return !task.completed;
+    if (filter === 'completed') return task.completed;
+    return true;
+  });
+
   return (
     <section className="todoapp">
       <header className="header">
@@ -38,14 +44,14 @@ const App = () => {
       </header>
       <section className="main">
         <TaskList
-          tasks={tasks}
+          tasks={filteredTasks}
           onToggleTask={toggleTaskCompletion}
           onDeleteTask={deleteTask}
         />
       </section>
-      <Footer />
+      <Footer currentFilter={filter} onFilterChange={setFilter} />
     </section>
-  )
-}
+  );
+};
 
 export default App;

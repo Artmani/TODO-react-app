@@ -1,23 +1,19 @@
-import '../styles/index.css';
+import PropTypes from 'prop-types';
+import TasksFilter from './TasksFilter';
 
-const Footer = () => {
+const Footer = ({ currentFilter, onFilterChange }) => {
   return (
     <footer className="footer">
       <span className="todo-count">1 items left</span>
-      <ul className="filters">
-        <li>
-          <button className="selected">All</button>
-        </li>
-        <li>
-          <button>Active</button>
-        </li>
-        <li>
-          <button>Completed</button>
-        </li>
-      </ul>
+      <TasksFilter currentFilter={currentFilter} onFilterChange={onFilterChange} />
       <button className="clear-completed">Clear completed</button>
     </footer>
-  )
-}
+  );
+};
+
+Footer.propTypes = {
+  currentFilter: PropTypes.string.isRequired,
+  onFilterChange: PropTypes.func.isRequired,
+};
 
 export default Footer;
