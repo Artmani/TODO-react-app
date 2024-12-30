@@ -4,7 +4,7 @@ import { formatDistanceToNow } from 'date-fns';
 
 const Task = ({ task, onToggle, onDelete }) => {
   return (
-    <li className={task.completed ? "completed" : ""}>
+    <li className={task.completed ? 'completed' : ''}>
       <div className="view">
         <input
           className="toggle"
@@ -22,8 +22,8 @@ const Task = ({ task, onToggle, onDelete }) => {
         <button className="icon icon-destroy" onClick={onDelete}></button>
       </div>
     </li>
-  )
-}
+  );
+};
 
 Task.propTypes = {
   task: PropTypes.shape({

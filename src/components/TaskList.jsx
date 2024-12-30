@@ -1,5 +1,4 @@
 import Task from './Task';
-
 import '../styles/index.css';
 import PropTypes from 'prop-types';
 
@@ -15,8 +14,8 @@ const TaskList = ({ tasks, onToggleTask, onDeleteTask }) => {
         />
       ))}
     </ul>
-  )
-}
+  );
+};
 
 TaskList.propTypes = {
   tasks: PropTypes.arrayOf(

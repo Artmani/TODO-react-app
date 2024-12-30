@@ -14,21 +14,21 @@ const App = () => {
       description,
       completed: false,
       createdAt: new Date(),
-    }
+    };
     setTasks((prevTasks) => [...prevTasks, newTask]);
-  }
+  };
 
   const toggleTaskCompletion = (taskId) => {
     setTasks((prevTasks) =>
       prevTasks.map((task) =>
         task.id === taskId ? { ...task, completed: !task.completed } : task,
       ),
-    )
+    );
   };
 
   const deleteTask = (taskId) => {
     setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
-  }
+  };
 
   const filteredTasks = tasks.filter((task) => {
     if (filter === 'active') return !task.completed;
