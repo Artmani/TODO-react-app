@@ -1,12 +1,12 @@
-import { useState } from 'react';
-import NewTaskForm from './components/NewTaskForm';
-import TaskList from './components/TaskList';
-import Footer from './components/Footer';
-import './styles/index.css';
+import { useState } from 'react'
+import NewTaskForm from './components/NewTaskForm'
+import TaskList from './components/TaskList'
+import Footer from './components/Footer'
+import './styles/index.css'
 
 const App = () => {
-  const [tasks, setTasks] = useState([]);
-  const [filter, setFilter] = useState('all');
+  const [tasks, setTasks] = useState([])
+  const [filter, setFilter] = useState('all')
 
   const addTask = (description) => {
     const newTask = {
@@ -14,27 +14,25 @@ const App = () => {
       description,
       completed: false,
       createdAt: new Date(),
-    };
-    setTasks((prevTasks) => [...prevTasks, newTask]);
-  };
+    }
+    setTasks((prevTasks) => [...prevTasks, newTask])
+  }
 
   const toggleTaskCompletion = (taskId) => {
     setTasks((prevTasks) =>
-      prevTasks.map((task) =>
-        task.id === taskId ? { ...task, completed: !task.completed } : task,
-      ),
-    );
-  };
+      prevTasks.map((task) => (task.id === taskId ? { ...task, completed: !task.completed } : task))
+    )
+  }
 
   const deleteTask = (taskId) => {
-    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
-  };
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId))
+  }
 
   const filteredTasks = tasks.filter((task) => {
-    if (filter === 'active') return !task.completed;
-    if (filter === 'completed') return task.completed;
-    return true;
-  });
+    if (filter === 'active') return !task.completed
+    if (filter === 'completed') return task.completed
+    return true
+  })
 
   return (
     <section className="todoapp">
@@ -43,15 +41,11 @@ const App = () => {
         <NewTaskForm onAddTask={addTask} />
       </header>
       <section className="main">
-        <TaskList
-          tasks={filteredTasks}
-          onToggleTask={toggleTaskCompletion}
-          onDeleteTask={deleteTask}
-        />
+        <TaskList tasks={filteredTasks} onToggleTask={toggleTaskCompletion} onDeleteTask={deleteTask} />
       </section>
       <Footer currentFilter={filter} onFilterChange={setFilter} />
     </section>
-  );
-};
+  )
+}
 
-export default App;
+export default App

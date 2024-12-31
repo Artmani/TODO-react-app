@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useState } from 'react'
+import PropTypes from 'prop-types'
 
 const NewTaskForm = ({ onAddTask }) => {
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState('')
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (description.trim() !== '') {
-      onAddTask(description);
-      setDescription('');
+      onAddTask(description)
+      setDescription('')
     }
-  };
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -21,11 +21,11 @@ const NewTaskForm = ({ onAddTask }) => {
         onChange={(e) => setDescription(e.target.value)}
       />
     </form>
-  );
-};
+  )
+}
 
 NewTaskForm.propTypes = {
   onAddTask: PropTypes.func.isRequired,
-};
+}
 
-export default NewTaskForm;
+export default NewTaskForm
