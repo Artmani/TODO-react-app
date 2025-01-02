@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "prepare": "husky"
   },
   "dependencies": {
     "date-fns": "^4.1.0",
@@ -33,6 +34,7 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "globals": "^15.14.0",
+    "husky": "^9.1.7",
     "install-peerdeps": "^3.0.3",
     "prettier": "^3.4.2",
     "vite": "^6.0.6"
