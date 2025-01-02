@@ -1,4 +1,5 @@
 import { useState } from 'react'
+
 import NewTaskForm from './components/NewTaskForm'
 import TaskList from './components/TaskList'
 import Footer from './components/Footer'
@@ -13,6 +14,7 @@ const App = () => {
       id: Date.now(),
       description,
       completed: false,
+
       createdAt: new Date(),
     }
     setTasks((prevTasks) => [...prevTasks, newTask])
