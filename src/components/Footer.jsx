@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+
 import TasksFilter from './TasksFilter'
 
 const Footer = ({ currentFilter, onFilterChange }) => {

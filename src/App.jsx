@@ -14,7 +14,6 @@ const App = () => {
       id: Date.now(),
       description,
       completed: false,
-
       createdAt: new Date(),
     }
     setTasks((prevTasks) => [...prevTasks, newTask])
