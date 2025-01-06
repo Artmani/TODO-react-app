@@ -5,7 +5,7 @@ import TaskList from './components/TaskList'
 import Footer from './components/Footer'
 import './styles/index.css'
 
-const App = () => {
+function App() {
   const [tasks, setTasks] = useState([])
   const [filter, setFilter] = useState('all')
 
