@@ -1,7 +1,7 @@
 {
   "settings": {
     "react": {
-      "version": "18.3.1"
+      "version": "detect"
     },
     "import/resolver": {
       "node": {
@@ -15,13 +15,14 @@
     "es2021": true
   },
 
-  "ignorePatterns": ["node_modules", "dist", "build", "README"],
+  "ignorePatterns": ["node_modules", "dist", "build", "README", "vite.config"],
   "extends": [
     "eslint:recommended",
+    "airbnb",
     "plugin:react/recommended",
-    "plugin:prettier/recommended",
     "plugin:import/errors",
-    "plugin:import/warnings"
+    "plugin:import/warnings",
+    "eslint-config-prettier"
   ],
   "parserOptions": {
     "ecmaFeatures": {
@@ -30,10 +31,9 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "prettier", "import"],
+  "plugins": ["react", "import"],
   "rules": {
     "indent": ["error", 2],
-    "prettier/prettier": "error",
     "linebreak-style": [0, "unix"],
     "quotes": ["error", "single"],
     //    "semi": ["error", "always"],
