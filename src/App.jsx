@@ -10,13 +10,13 @@ function App() {
   const [filter, setFilter] = useState('all')
   const [timers, setTimers] = useState({})
 
-  const addTask = (description) => {
+  const addTask = (description, totalSeconds) => {
     const newTask = {
       id: Date.now(),
       description,
       completed: false,
       createdAt: new Date(),
-      timeSpent: 0,
+      timeLeft: totalSeconds, // Initialize with total time
       isRunning: false,
     }
     setTasks((prevTasks) => [...prevTasks, newTask])
@@ -49,7 +49,16 @@ function App() {
 
     const intervalId = setInterval(() => {
       setTasks((prevTasks) =>
-        prevTasks.map((task) => (task.id === taskId ? { ...task, timeSpent: task.timeSpent + 1 } : task))
+        prevTasks.map((task) => {
+          if (task.id === taskId) {
+            if (task.timeLeft > 0) {
+              return { ...task, timeLeft: task.timeLeft - 1 }
+            }
+            clearInterval(intervalId)
+            return { ...task, isRunning: false }
+          }
+          return task
+        })
       )
     }, 1000)
 

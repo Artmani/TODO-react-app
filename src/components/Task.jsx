@@ -21,7 +21,7 @@ function Task({ task, onToggle, onDelete, onStartTimer, onStopTimer }) {
         />
         <label>
           <span className="description">{task.description}</span>
-          <span className="timer">{formatTime(task.timeSpent)}</span>
+          <span className="timer">{formatTime(task.timeLeft)}</span>
           {task.isRunning ? (
             <button
               className="icon icon-pause"
@@ -52,7 +52,7 @@ Task.propTypes = {
     description: PropTypes.string.isRequired,
     completed: PropTypes.bool.isRequired,
     createdAt: PropTypes.instanceOf(Date).isRequired,
-    timeSpent: PropTypes.number.isRequired,
+    timeLeft: PropTypes.number.isRequired,
     isRunning: PropTypes.bool.isRequired,
   }).isRequired,
   onToggle: PropTypes.func.isRequired,
