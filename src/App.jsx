@@ -16,8 +16,9 @@ function App() {
       description,
       completed: false,
       createdAt: new Date(),
-      timeLeft: totalSeconds, // Initialize with total time
+      timeLeft: totalSeconds,
       isRunning: false,
+      isEditing: false,
     }
     setTasks((prevTasks) => [...prevTasks, newTask])
   }
@@ -71,6 +72,26 @@ function App() {
     return true
   })
 
+  const incompleteTaskCount = tasks.filter((task) => !task.completed).length
+
+  const clearCompletedTasks = () => {
+    setTasks((prevTasks) => prevTasks.filter((task) => !task.completed))
+  }
+
+  const toggleEditTask = (taskId) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === taskId ? { ...task, isEditing: !task.isEditing } : { ...task, isEditing: false }
+      )
+    )
+  }
+
+  const updateTaskDescription = (taskId, newDescription) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) => (task.id === taskId ? { ...task, description: newDescription, isEditing: false } : task))
+    )
+  }
+
   return (
     <section className="todoapp">
       <header className="header">
@@ -84,9 +105,16 @@ function App() {
           onDeleteTask={deleteTask}
           onStartTimer={startTimer}
           onStopTimer={stopTimer}
+          onEditTask={toggleEditTask}
+          onUpdateTask={updateTaskDescription}
         />
       </section>
-      <Footer currentFilter={filter} onFilterChange={setFilter} />
+      <Footer
+        currentFilter={filter}
+        onFilterChange={setFilter}
+        incompleteTaskCount={incompleteTaskCount}
+        onClearCompleted={clearCompletedTasks}
+      />
     </section>
   )
 }

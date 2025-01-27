@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Task from './Task'
 import '../styles/index.css'
 
-function TaskList({ tasks, onToggleTask, onDeleteTask, onStartTimer, onStopTimer }) {
+function TaskList({ tasks, onToggleTask, onDeleteTask, onStartTimer, onStopTimer, onEditTask, onUpdateTask }) {
   return (
     <ul className="todo-list">
       {tasks.map((task) => (
@@ -14,6 +14,8 @@ function TaskList({ tasks, onToggleTask, onDeleteTask, onStartTimer, onStopTimer
           onDelete={() => onDeleteTask(task.id)}
           onStartTimer={onStartTimer}
           onStopTimer={onStopTimer}
+          onEditTask={onEditTask}
+          onUpdateTask={onUpdateTask}
         />
       ))}
     </ul>
