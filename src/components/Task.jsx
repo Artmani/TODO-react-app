@@ -1,10 +1,16 @@
 import '../styles/index.css'
 import PropTypes from 'prop-types'
 import { formatDistanceToNow } from 'date-fns'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 function Task({ task, onToggle, onDelete, onStartTimer, onStopTimer, onEditTask, onUpdateTask }) {
   const [editingDescription, setEditingDescription] = useState(task.description)
+
+  useEffect(() => {
+    if (task.isEditing) {
+      setEditingDescription(task.description)
+    }
+  }, [task.isEditing, task.description])
 
   const handleSave = () => {
     if (editingDescription.trim() === '') {

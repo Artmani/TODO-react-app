@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 import NewTaskForm from './components/NewTaskForm'
 import TaskList from './components/TaskList'
@@ -8,7 +8,7 @@ import './styles/index.css'
 function App() {
   const [tasks, setTasks] = useState([])
   const [filter, setFilter] = useState('all')
-  const [timers, setTimers] = useState({})
+  const timersRef = useRef({})
 
   const addTask = (description, totalSeconds) => {
     const newTask = {
@@ -32,12 +32,8 @@ function App() {
   const stopTimer = (taskId) => {
     setTasks((prevTasks) => prevTasks.map((task) => (task.id === taskId ? { ...task, isRunning: false } : task)))
 
-    clearInterval(timers[taskId])
-    setTimers((prevTimers) => {
-      const updatedTimers = { ...prevTimers }
-      delete updatedTimers[taskId]
-      return updatedTimers
-    })
+    clearInterval(timersRef.current[taskId])
+    delete timersRef.current[taskId]
   }
 
   const deleteTask = (taskId) => {
@@ -63,7 +59,7 @@ function App() {
       )
     }, 1000)
 
-    setTimers((prevTimers) => ({ ...prevTimers, [taskId]: intervalId }))
+    timersRef.current[taskId] = intervalId
   }
 
   const filteredTasks = tasks.filter((task) => {
